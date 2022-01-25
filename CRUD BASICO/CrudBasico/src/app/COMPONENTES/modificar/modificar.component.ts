@@ -11,9 +11,10 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class ModificarComponent implements OnInit {
 
   equipo: Equipo={
-    id_equipo:'',
-    nombre:'',
-    logo:''
+    id:'',
+    username:'',
+    correo:'',
+    telefono:''
   };
 
   constructor(private EquipoService:EquipoService,
@@ -22,7 +23,6 @@ export class ModificarComponent implements OnInit {
 
   ngOnInit(): void {
     const id_entrada = <string>this.activeRoute.snapshot.params.id;
-    console.log('id de entrada: '+id_entrada);
 
     if(id_entrada){
       this.EquipoService.getUnEquipo(id_entrada).subscribe(
@@ -38,7 +38,7 @@ export class ModificarComponent implements OnInit {
   modificar()
   {
 
-    this.EquipoService.editEquipo(this.equipo.id_equipo, this.equipo).subscribe(
+    this.EquipoService.editEquipo(this.equipo.id, this.equipo).subscribe(
       res=>{
         console.log(res);
       },

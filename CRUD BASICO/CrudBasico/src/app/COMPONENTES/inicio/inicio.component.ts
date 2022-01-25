@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {EquipoService, Equipo} from '../../SERVICES/equipo.service';
 import { Router} from '@angular/router';
 
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
@@ -14,10 +16,17 @@ export class InicioComponent implements OnInit {
 
   constructor(private EquipoService:EquipoService, private router:Router) { }
 
+
+
+
   ngOnInit(): void {
     this.listarEquipo();
   }
 
+  
+ 
+ 
+  
 
   listarEquipo()
   {

@@ -1,36 +1,39 @@
 
 <div class="container">
-    <p>AGREGAR EQUIPO</p>
+    <p>Agregar Usuario</p>
     <div class="row">
         <div class="col-sm-6">
             <form>
                 <div class="mb-3">
-                    <label class="form-label">Nombre de Equipo</label>
-                    <input [(ngModel)]="equipo.nombre" type="text" class="form-control" name="nombre">
+                    <label class="form-label">Nombre de usuario</label>
+                    <input [(ngModel)]="equipo.username" type="text" class="form-control" name="username">
                 </div>
-                
                 <div class="mb-3">
-                    <label class="form-label">logo</label>
-                    <input [(ngModel)]="equipo.logo" type="text" class="form-control" name="nombre">
+                    <label class="form-label">Password</label>
+                    <input [(ngModel)]="equipo.password" type="text" class="form-control" name="password">
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input [(ngModel)]="equipo.correo" type="text" class="form-control" name="correo">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Telefono</label>
+                    <input [(ngModel)]="equipo.telefono" type="text" class="form-control" name="telefono">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Perfil</label>
+                    <select class="form-control" [(ngModel)]="equipo.seleccionado" name="perfil_id">
+                      
+                        <option value="{{item.id}}"  *ngFor="let item of ListaPerfiles">{{item.nombre}}</option>
+                    </select>
+                </div>
+               {{seleccionado}}
                 
-                <button (click)="agregar()" class="btn btn-primary">Agregar</button>
+                <button (click)="agregar()" class="btn btn-primary">Agregar Usuario</button>
             </form>
         </div>
 
 
-        <div class="col-sm-6">
-            ç<form>
-                <div class="mb-3">
-                    <img src="{{equipo.logo}}" width="100" height="100" alt="">
-                </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">{{equipo.nombre}}</label>
-                </div>
-                
-            </form>
-        </div>
 
     </div>
     

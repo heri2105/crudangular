@@ -4,9 +4,20 @@ const conexion = require('./config/conexion')
 
 
 //---------- agregamos rutas--------
-//get equipos
+//get usuarios
 router.get('/',(req, res)=>{
-    let sql ='select * from tb_equipo'
+    let sql ='SELECT * FROM usuarios where estatus = 1'
+    conexion.query(sql,(err, rows, fields)=>{
+        if(err) throw err;
+        else{
+            res.json(rows)
+        }
+    })
+
+})
+//get perfiles
+router.get('/perfiles',(req, res)=>{
+    let sql ='SELECT * FROM `perfiles` where estatus = 1'
     conexion.query(sql,(err, rows, fields)=>{
         if(err) throw err;
         else{
@@ -16,10 +27,11 @@ router.get('/',(req, res)=>{
 
 })
 
-// get un equipo
+
+// get un usuarios por id
 router.get('/:id',(req, res)=>{
     const {id} = req.params
-    let sql ='select * from tb_equipo where id_equipo = ?'
+    let sql ='SELECT * FROM usuarios where id = ?'
     conexion.query(sql,[id],(err, rows, fields)=>{
         if(err) throw err;
         else{
@@ -28,24 +40,27 @@ router.get('/:id',(req, res)=>{
     })
 })
 
-//agregar equipo
-router.post('/',( req, res)=>{
-    const{nombre, logo} = req.body
 
-    let sql = `insert into tb_equipo(nombre, logo) values('${nombre}','${logo}')`
+
+
+
+//agregar usuarios
+router.post('/',( req, res)=>{
+    const{username,password,correo,telefono,seleccionado} = req.body
+
+    let sql = `INSERT INTO usuarios(username,password,perfil_id,correo,telefono,estatus) VALUES ('${username}','${password}','${seleccionado}','${correo}','${telefono}',1)`
     conexion.query(sql, (err, rows, fields)=>{
         if(err) throw err
         else{
-            res.json({status: 'equipo agregado'})
+            res.json({status: 'Usuario agregado'})
         }
     })
 })
 
-//eliminar 
+//BORRADO LOGICO
 router.delete('/:id',(req, res)=>{
     const{id} = req.params
-
-    let sql =`delete from tb_equipo where id_equipo = '${id}'`
+    let sql =`UPDATE usuarios SET estatus = 0 WHERE id = '${id}'`
     conexion.query(sql, (err, rows, fields)=>{
         if(err) throw err
         else{
@@ -54,20 +69,22 @@ router.delete('/:id',(req, res)=>{
     })
 });
 
-//modificar
+//modificar usuarios
 router.put('/:id',(req, res)=>{
     const{id}=req.params
-    const{nombre, logo} = req.body
+    const{username, correo,telefono} = req.body
 
-    let sql = `update tb_equipo set 
-                nombre ='${nombre}',
-                logo='${logo}'
-                where id_equipo = '${id}'`
+
+    let sql = `update usuarios set 
+        username ='${username}',
+        correo='${correo}',
+        telefono='${telefono}'
+                where id = '${id}'`
     
     conexion.query(sql, (err, rows, fields)=>{
         if(err) throw err
         else{
-            res.json({status: 'equipo modificado'})
+            res.json({status: 'Usuario modificado'})
         }
     })
 

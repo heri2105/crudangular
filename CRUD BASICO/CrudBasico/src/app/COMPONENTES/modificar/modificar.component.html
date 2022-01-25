@@ -1,36 +1,22 @@
 
 <div class="container">
-    <p>MODOFICAR EQUIPO</p>
+    <p>Modificar Usuario</p>
     <div class="row">
         <div class="col-sm-6">
             <form>
                 <div class="mb-3">
-                    <label class="form-label">Nombre de Equipo</label>
-                    <input [(ngModel)]="equipo.nombre" type="text" class="form-control" name="nombre">
+                    <label class="form-label">Nombre del usuario</label>
+                    <input [(ngModel)]="equipo.username" type="text" class="form-control" name="username">
                 </div>
-                
                 <div class="mb-3">
-                    <label class="form-label">logo</label>
-                    <input [(ngModel)]="equipo.logo" type="text" class="form-control" name="logo">
+                    <label class="form-label">Correo</label>
+                    <input [(ngModel)]="equipo.correo" type="text" class="form-control" name="correo">
                 </div>
-                
-                <button (click)="modificar()" class="btn btn-primary">Guardar</button>
-            </form>
-        </div>
-
-
-
-
-        <div class="col-sm-6">
-            ç<form>
                 <div class="mb-3">
-                    <img src="{{equipo.logo}}" width="100" height="100" alt="">
+                    <label class="form-label">Telefono</label>
+                    <input [(ngModel)]="equipo.telefono" type="text" class="form-control" name="telefono">
                 </div>
-                
-                <div class="mb-3">
-                    <label class="form-label">{{equipo.nombre}}</label>
-                </div>
-                
+                <button (click)="modificar()" class="btn btn-primary">Actualizar Usuario</button>
             </form>
         </div>
 

@@ -15,8 +15,10 @@ export class EquipoService {
   {
     return this.http.get(this.url);
   }
-
-
+  //get perfiles
+  getPerfiles(){
+    return this.http.get(this.url+'/perfiles')
+  }
   //get un Equipo
   getUnEquipo(id:string){
     return this.http.get(this.url+'/'+id);
@@ -44,7 +46,14 @@ export class EquipoService {
 
 
 export interface Equipo{
-  id_equipo?:string;
+  id?:string;
+  username?:string;
+  correo?:string;
+  telefono?:string;
+  seleccionado?:string;
+}
+
+export interface Perfiles{
+  id?:string;
   nombre?:string;
-  logo?:string;
 }
